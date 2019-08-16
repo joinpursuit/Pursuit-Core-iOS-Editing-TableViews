@@ -8,43 +8,60 @@
 
 import UIKit
 
-class ShoppingItemsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+class ShoppingItemsViewController: UIViewController {
+  
+  
     @IBOutlet weak var shoppingItemsTableView: UITableView!
     
     private var shoppingItems = [ShoppingItem] ()
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
-    }
-    
-
-    @IBAction func editButtonPressed(_ sender: UIButton) {
-        
-    }
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        private func loadShoppingItems() {
-            let allItems = ShoppingItemFetchingClient.getShoppingItems()
-            shoppingItems = allItems
-        }
-        
-        private func configureShoppingItemsTableView() {
-            shoppingItemsTableView.dataSource = self
-            shoppingItemsTableView.delegate = self
-        }
+        configureShoppingItemsTableView()
+        loadShoppingItems()
+    }
+    
+    private func loadShoppingItems() {
+        let allItems = ShoppingItemFetchingClient.getShoppingItems()
+        shoppingItems = allItems
+    }
+    
+    private func configureShoppingItemsTableView() {
+        shoppingItemsTableView.dataSource = self
+        shoppingItemsTableView.delegate = self
+    }
+}
 
-        // Do any additional setup after loading the view.
+extension ShoppingItemsViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return shoppingItems.count
     }
     
 
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = shoppingItemsTableView.dequeueReusableCell(withIdentifier: "shoppingItemCell") else {
+            fatalError("Unknown Reuse ID")
+            }
+        let shoppingItem = shoppingItems[indexPath.row]
+        cell.textLabel?.text = shoppingItem.name
+        cell.detailTextLabel?.text = "$\(shoppingItem.price)"
+        return cell
+}
+
+    @IBAction func editButtonPressed(_ sender: UIButton) {
+        switch shoppingItemsTableView.isEditing {
+        case true:
+            shoppingItemsTableView.setEditing(false, animated: true)
+            sender.setTitle("Edit", for: .normal)
+        case false:
+            shoppingItemsTableView.setEditing(true, animated: false)
+            sender.setTitle("Done", for: .normal)
+        }
+    }
+    
+    
+        // Do any additional setup after loading the view.
+}
     /*
     // MARK: - Navigation
 
@@ -54,5 +71,14 @@ class ShoppingItemsViewController: UIViewController, UITableViewDelegate, UITabl
         // Pass the selected object to the new view controller.
     }
     */
-
+extension ShoppingItemsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        switch editingStyle {
+        case .delete:
+            shoppingItems.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        default: break
+        }
+    }
 }
+
