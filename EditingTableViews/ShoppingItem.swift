@@ -15,3 +15,5 @@ struct ShoppingItemFetchingClient {
         ]
     }
 }
+
+var inventory = ShoppingItemFetchingClient.getShoppingItems()
