@@ -13,10 +13,7 @@ class CreateShoppingItemViewController: UIViewController {
     // MARK: - IBOutlets
     
     
-    @IBAction func nameLabel(_ sender: UITextField) {
-    }
-    @IBAction func priceLabel(_ sender: UITextField) {
-    }
+
     
     
     //
