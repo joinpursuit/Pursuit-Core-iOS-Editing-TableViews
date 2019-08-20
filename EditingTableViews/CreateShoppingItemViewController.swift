@@ -13,13 +13,10 @@ class CreateShoppingItemViewController: UIViewController {
     // MARK: - IBOutlets
     
     
-
+    @IBOutlet weak var nameLabel: UITextField!
     
+    @IBOutlet weak var priceLabel: UITextField!
     
-    //
-//    @IBOutlet var nameLabel: UITextField!
-//    @IBOutlet var priceLabel: UITextField!
-//
 //    // MARK: - IBActions
 //
     @IBAction func cancelButtonPressed(_ sender: Any) {
