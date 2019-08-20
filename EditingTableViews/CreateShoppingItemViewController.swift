@@ -10,8 +10,26 @@ import UIKit
 
 class CreateShoppingItemViewController: UIViewController {
 
+    // MARK: - IBOutlets
     
     
+    @IBAction func nameLabel(_ sender: UITextField) {
+    }
+    @IBAction func priceLabel(_ sender: UITextField) {
+    }
+    
+    
+    //
+//    @IBOutlet var nameLabel: UITextField!
+//    @IBOutlet var priceLabel: UITextField!
+//
+//    // MARK: - IBActions
+//
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
