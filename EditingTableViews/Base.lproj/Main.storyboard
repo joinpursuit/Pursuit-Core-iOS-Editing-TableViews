@@ -69,7 +69,12 @@
                                 </connections>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="jav-A3-lAr"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="jav-A3-lAr">
+                            <connections>
+                                <action selector="buttonPressed:" destination="ndl-ss-tyC" id="991-QG-bF8"/>
+                                <segue destination="pIA-jz-gKg" kind="show" id="TIs-CW-SRw"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="shoppingItemsTableView" destination="TX0-Y3-mA2" id="cJ3-oJ-LS1"/>
@@ -128,6 +133,9 @@
                                 <rect key="frame" x="183" y="413" width="49" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Submit"/>
+                                <connections>
+                                    <segue destination="44U-j4-aP4" kind="unwind" unwindAction="unwindWithSegue:" id="0zG-Ae-RHX"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -139,6 +147,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OHj-Za-z9A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="44U-j4-aP4" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1928.985507246377" y="31.473214285714285"/>
         </scene>
